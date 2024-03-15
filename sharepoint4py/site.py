@@ -554,7 +554,7 @@ class _Site365(_Site2007):
 
         response = post(self._session, url=url, headers=headers, data=body, timeout=self.timeout)
 
-        return response.json()
+        return response.json()['d']
     
 def Site(site_url,  # type: str
          version=Version.v2007,
