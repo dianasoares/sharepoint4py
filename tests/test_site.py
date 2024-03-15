@@ -1,6 +1,6 @@
-from shareplum import Site
-from shareplum import Office365
-from shareplum.site import Version
+from sharepy import Site
+from sharepy import Office365
+from sharepy.site import Version
 from .test_settings import TEST_SETTINGS, TEST_PASSWORD
 import unittest
 

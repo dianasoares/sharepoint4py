@@ -1,6 +1,6 @@
-from shareplum import Site
-from shareplum import Office365
-from shareplum.site import Version
+from sharepy import Site
+from sharepy import Office365
+from sharepy.site import Version
 # from .test_settings import TEST_SETTINGS, TEST_PASSWORD
 import unittest
 
@@ -17,6 +17,8 @@ TEST_SETTINGS = {
         "test_folder_apostrophe": "Shared Documents/This' Folder"
     }
 TEST_PASSWORD = os.environ.get('TEST_PASSWORD')
+
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 
 # Edit test_server.json file to setup SharePoint Test Server
@@ -66,18 +68,31 @@ class ListTestCase(unittest.TestCase):
         
         self.assertEqual(size_after - size_before, 1)
 
+    def test_c_delete_attachment(self):
+        
+        print("Delete Attachment")
+
+        self.list = self.site.List(TEST_SETTINGS["test_list"])
+               
+        before_attachments = self.list.get_attachments(item_id=7)
+        
+        for attach in before_attachments:
+            self.list.delete_attachment(item_id=7, file_name=attach["FileName"])
+            
+        after_attachments = self.list.get_attachments(item_id=7)
+       
+        self.assertEqual(len(after_attachments), 0)
+        
     def test_c_upload_attachment(self):
         
         print("Upload Attachment")
 
         self.list = self.site.List(TEST_SETTINGS["test_list"])
-        file = r"C:\Users\soare\Downloads\TESTEEE.TXT.txt"
-        result = self.list.upload_file(item_id=7, filepath=file)
-        result['d']["Id"]
+        file = os.path.join(__location__, "data", "test.txt")
+        after_attachments = self.list.upload_attachment(item_id=6, filepath=file)
         
-        size_after = len(self.list.get_list_items())
-        
-        self.assertEqual(size_after - size_before, 1)
+        self.assertEqual( len(after_attachments), 1)
+
 
 
     def test_d_delete_row(self):

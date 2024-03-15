@@ -11,7 +11,7 @@ venv/
 .vscode/
 dist/
 build/
-shareplum.egg-info/
+SharePy.egg-info/
 docs/_build/
 env
 .idea

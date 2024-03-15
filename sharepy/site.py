@@ -59,7 +59,7 @@ class _Site2007:
         self._session.mount("https://", https_adaptor)
         self._session.mount("http://", http_adaptor)
 
-        self._session.headers.update({"user-agent": "shareplum/%s" % __version__})
+        self._session.headers.update({"user-agent": "SharePy/%s" % __version__})
 
         if authcookie is not None:
             self._session.cookies = authcookie

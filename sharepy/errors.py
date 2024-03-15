@@ -1,4 +1,4 @@
-class ShareplumError(Exception):
+class SharePyError(Exception):
     def __init__(self, msg, details=None):
         if details:
             super().__init__(f"{msg} : {details}")
@@ -6,5 +6,5 @@ class ShareplumError(Exception):
             super().__init__(msg)
 
 
-class ShareplumRequestError(ShareplumError):
+class SharePyRequestError(SharePyError):
     pass

@@ -4,18 +4,18 @@ Installing
 
 Installation is as easy as::
 
-    $ pip install shareplum
+    $ pip install SharePy
 
 or install from source. ::
 
-    $ git clone git://github.com/jasonrollins/shareplum
-    $ cd shareplum
+    $ git clone git://github.com/jasonrollins/SharePy
+    $ cd SharePy
     $ python setup.py install
 
 Dependencies
 ============
 
-SharePlum requires the following packages:
+SharePy requires the following packages:
 
 * `lxml <https://pypi.python.org/pypi/lxml>`_
 * `requests <https://pypi.python.org/pypi/requests>`_

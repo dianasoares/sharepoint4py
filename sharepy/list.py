@@ -8,7 +8,7 @@ from typing import List
 from typing import Optional
 from typing import Tuple
 
-from .request_helper import post, get
+from .request_helper import post, get, delete
 import requests
 import json
 from lxml import etree
@@ -461,8 +461,8 @@ class _List2007:
                 'editor': row.attrib['Editor']})
         return data
 
-    def update_list_items(self, data, kind, mutate_data=False):  # type: (List[Dict[str, str]], str) -> Any
-        """Update List Items
+    def update_list_items(self, data, kind, mutate_data=False): 
+        """(DEPRECATED) Update List Items
            kind = 'New', 'Update', or 'Delete'
 
            New:
@@ -623,7 +623,6 @@ class _List365(_List2007):
         data = json.loads(response.text)['ListItemEntityTypeFullName']
         return data
         
-        
     def create_item(self, item_data):
         
         url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items"
@@ -643,6 +642,17 @@ class _List365(_List2007):
         response = post(self._session, url=url, headers=headers, data=body, timeout=self.timeout)
         return response.json()['d']
 
+    def delete_item(self, item_id):
+        
+        url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})"
+
+        headers = {'Accept': 'application/json;odata=verbose',
+                   'Content-Type': 'application/json;odata=verbose',
+                   'X-RequestDigest': self.contextinfo['FormDigestValue']}
+
+        response = delete(self._session, url=url, headers=headers, timeout=self.timeout)
+        return response.json()
+    
     def get_attachments(self, item_id: str):
         
         url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})/AttachmentFiles"
@@ -651,9 +661,12 @@ class _List365(_List2007):
 
         return get(self._session, url=url, headers=headers, timeout=self.timeout).json()['value']
 
-    def upload_file(self, item_id: str, filepath: str):
+    def upload_attachment(self, item_id: str, filepath: str):
         
         file_name = os.path.basename(filepath)
+        
+        try: self.delete_attachment(item_id,  file_name)
+        except: pass
     
         url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})/AttachmentFiles/add(Filename='{file_name}')"
         headers = {'X-RequestDigest': self.contextinfo['FormDigestValue']}
@@ -662,3 +675,11 @@ class _List365(_List2007):
             post(self._session, url=url, headers=headers, data=f, timeout=self.timeout)
 
         return self.get_attachments(item_id)
+    
+    def delete_attachment(self, item_id,  file_name: str):
+            
+        url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})/AttachmentFiles('{file_name}')"
+        headers = {'X-RequestDigest': self.contextinfo['FormDigestValue']}
+
+        response = delete(self._session, url=url, headers=headers, timeout=self.timeout)
+        return response
