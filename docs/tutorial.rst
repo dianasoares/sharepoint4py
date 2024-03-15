@@ -6,7 +6,7 @@ On Premises Authentication
 ==========================
 Getting started is easy.  Just create some credentials you will use to connect to SharePoint with HttpNtlmAuth and pass the url and credentials to the Site object. ::
 
-    from sharepy import Site
+    from sharepoint4py import Site
     from requests_ntlm import HttpNtlmAuth
 
     cred = HttpNtlmAuth('Username', 'Password')
@@ -16,8 +16,8 @@ Office 365 Authentication
 ==========================
 For Office 365 Sharepoint is just as easy. The Office365 class grabs a login token from Microsoft's login servers then It logins the Sharepoint site and uses the cookie for Authentication. Make sure to put just the root url for the site in Office365 and add Https:// at start. ::
 
-    from sharepy import Site
-    from sharepy import Office365
+    from sharepoint4py import Site
+    from sharepoint4py import Office365
 
     authcookie = Office365('https://abc.sharepoint.com', username='username@abc.com', password='password').GetCookies()
     site = Site('https://abc.sharepoint.com/sites/MySharePointSite/', authcookie=authcookie)
@@ -25,14 +25,14 @@ For Office 365 Sharepoint is just as easy. The Office365 class grabs a login tok
 
 Access REST API
 ================
-You can access aditional features by utilizing the SharePoint REST API in SharePy.  To access this API you must specify a SharePoint version higher than 2013 when creating your Site object.
+You can access aditional features by utilizing the SharePoint REST API in Sharepoint4py.  To access this API you must specify a SharePoint version higher than 2013 when creating your Site object.
 
 
 ::
 
-    from sharepy import Site
-    from sharepy import Office365
-    from sharepy.site import Version
+    from sharepoint4py import Site
+    from sharepoint4py import Office365
+    from sharepoint4py.site import Version
 
     authcookie = Office365('https://abc.sharepoint.com', username='username@abc.com', password='password').GetCookies()
     site = Site('https://abc.sharepoint.com/sites/MySharePointSite/', version=Version.v2016, authcookie=authcookie)
@@ -95,7 +95,7 @@ or specifying the fields you want. ::
     sp_data = new_list.GetListItems(fields=['ID', 'Title'])
 
 
-SharePy will automatically convert the name of the column that is displayed when you view your list in a web browser to the internal SharePoint name so you don't have to worry about how SharePoint stores the data.
+Sharepoint4py will automatically convert the name of the column that is displayed when you view your list in a web browser to the internal SharePoint name so you don't have to worry about how SharePoint stores the data.
 
 Update List Data
 ================

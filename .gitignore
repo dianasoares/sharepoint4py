@@ -11,7 +11,7 @@ venv/
 .vscode/
 dist/
 build/
-SharePy.egg-info/
+Sharepoint4py.egg-info/
 docs/_build/
 env
 .idea

@@ -3,10 +3,10 @@ PROJECT STATUS
 
 I have not had access to a SharePoint server for a while now and I do not feel that I can support this library in any reasonable fashion.  I will still accept pull requests and respond to issues as much as I can, but please be aware that I am no longer capapable of testing most of these changes.
 
-SharePy
+Sharepoint4py
 ==========
 
-SharePy is an easier way to work with SharePoint services. It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
+Sharepoint4py is an easier way to work with SharePoint services. It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
 
 
 
@@ -15,7 +15,7 @@ Usage
 
 ::
 
-    from sharepy import Site
+    from sharepoint4py import Site
     from requests_ntlm import HttpNtlmAuth
 
     auth = HttpNtlmAuth('DIR\\username', 'password')
@@ -28,8 +28,8 @@ Authenticate to Office365 Sharepoint
 
 ::
 
-    from sharepy import Site
-    from sharepy import Office365
+    from sharepoint4py import Site
+    from sharepoint4py import Office365
 
     authcookie = Office365('https://abc.sharepoint.com', username='username@abc.com', password='password').GetCookies()
     site = Site('https://abc.sharepoint.com/sites/MySharePointSite/', authcookie=authcookie)
@@ -42,9 +42,9 @@ Access REST API
 
 ::
 
-    from sharepy import Site
-    from sharepy import Office365
-    from sharepy.site import Version
+    from sharepoint4py import Site
+    from sharepoint4py import Office365
+    from sharepoint4py.site import Version
 
     authcookie = Office365('https://abc.sharepoint.com', username='username@abc.com', password='password').GetCookies()
     site = Site('https://abc.sharepoint.com/sites/MySharePointSite/', version=Version.v2016, authcookie=authcookie)
@@ -70,13 +70,13 @@ Features
 Documentation
 -------------
 
-`Read the Docs <http://SharePy.readthedocs.org/en/latest/>`_
+`Read the Docs <http://Sharepoint4py.readthedocs.org/en/latest/>`_
 
 Contribute
 ----------
 
-- `Issue Tracker <http://github.com/jasonrollins/SharePy/issues>`_
-- `Source Code <http://github.com/jasonrollins/SharePy>`_
+- `Issue Tracker <http://github.com/jasonrollins/Sharepoint4py/issues>`_
+- `Source Code <http://github.com/jasonrollins/Sharepoint4py>`_
 
 Unit Tests
 ^^^^^^^^^^

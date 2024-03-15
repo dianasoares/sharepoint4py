@@ -1,12 +1,12 @@
 ==============================
-SharePy: Python + SharePoint
+Sharepoint4py: Python + SharePoint
 ==============================
 
-SharePy is an easier way to work with SharePoint services.  It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
+Sharepoint4py is an easier way to work with SharePoint services.  It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
 
 Example::
     
-    from sharepy import Site
+    from sharepoint4py import Site
     from requests_ntlm import HttpNtlmAuth
 
     cred = HttpNtlmAuth('Username', 'Password')

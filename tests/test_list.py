@@ -1,6 +1,6 @@
-from sharepy import Site
-from sharepy import Office365
-from sharepy.site import Version
+from sharepoint4py import Site
+from sharepoint4py import Office365
+from sharepoint4py.site import Version
 # from .test_settings import TEST_SETTINGS, TEST_PASSWORD
 import unittest
 
@@ -8,14 +8,15 @@ import unittest
 import os
 
 TEST_SETTINGS = {
-        "server_url": "https://sidiorgbr.sharepoint.com",
+        "server_url": "",
         "version": "2019",
-        "site_url": "https://sidiorgbr.sharepoint.com/sites/RPA-Roboticprocessautomation2",
-        "username": "rpa.bot@sidi.org.br",
+        "site_url": "",
+        "username": "",
         "test_list": "Teste",
-        "test_folder": "Shared Documents/Teste_Silvia",
-        "test_folder_apostrophe": "Shared Documents/This' Folder"
+        "test_folder": "",
+        "test_folder_apostrophe": ""
     }
+
 TEST_PASSWORD = os.environ.get('TEST_PASSWORD')
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))

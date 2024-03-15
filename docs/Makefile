@@ -96,9 +96,9 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/SharePy.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/Sharepoint4py.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/SharePy.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/Sharepoint4py.qhc"
 
 .PHONY: applehelp
 applehelp:
@@ -115,8 +115,8 @@ devhelp:
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/SharePy"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/SharePy"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/Sharepoint4py"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/Sharepoint4py"
 	@echo "# devhelp"
 
 .PHONY: epub

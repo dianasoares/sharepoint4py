@@ -1,5 +1,5 @@
 import requests
-from .errors import SharePyRequestError
+from .errors import Sharepoint4pyRequestError
 
 
 def get(session: requests.Session, url, **kwargs):
@@ -8,7 +8,7 @@ def get(session: requests.Session, url, **kwargs):
         response.raise_for_status()
         return response
     except requests.exceptions.RequestException as err:
-        raise SharePyRequestError("SharePy HTTP Get Failed", err)
+        raise Sharepoint4pyRequestError("Sharepoint4py HTTP Get Failed", err)
 
 
 def post(session: requests.Session, url, **kwargs):
@@ -17,7 +17,7 @@ def post(session: requests.Session, url, **kwargs):
         response.raise_for_status()
         return response
     except requests.exceptions.RequestException as err:
-        raise SharePyRequestError("SharePy HTTP Post Failed", err)
+        raise Sharepoint4pyRequestError("Sharepoint4py HTTP Post Failed", err)
 
 
 
@@ -27,4 +27,4 @@ def delete(session: requests.Session, url, **kwargs):
         response.raise_for_status()
         return response
     except requests.exceptions.RequestException as err:
-        raise SharePyRequestError("SharePy HTTP Post Failed", err)
+        raise Sharepoint4pyRequestError("Sharepoint4py HTTP Post Failed", err)
