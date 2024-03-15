@@ -188,8 +188,26 @@ class _List2007:
                     return "0"
                 else:
                     raise Exception("%s not a valid Boolean Value, only 'Yes' or 'No'" % value)
+            
+            elif field_type == "URL":
+                
+                if isinstance(value, dict):
+                    return value
+                else:
+                    return {
+                        "Url": value,
+                        "Description": value
+                    }
+            elif field_type == "MultiChoice":
+                return {
+                "__metadata":{"type":"Collection(Edm.String)"},
+                "results": value
+                }
+                
+                
             elif self.users and field_type == "User":
                 return self.users["py"][key]
+            
             else:
                 return value
         except AttributeError:

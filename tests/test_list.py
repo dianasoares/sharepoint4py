@@ -1,3 +1,4 @@
+from datetime import datetime
 from sharepoint4py import Site
 from sharepoint4py import Office365
 from sharepoint4py.site import Version
@@ -50,7 +51,14 @@ class ListTestCase(unittest.TestCase):
 
         size_before = len(self.list.get_list_items())
         
-        my_data = {'Título': 'First Row!'}
+        my_data = {
+            'Nome': 'First Row!',
+            'Descrição': "teste descrição",
+            "Edital": "Petrobras",
+            "Prazo de envio de proposta": datetime.now(),
+            "Link Edital": "https://powerusers.microsoft.com/t5/Building-Flows/Copy-a-list-item-using-REST-API-choice-field-with-multiple/td-p/1266036",
+            "Tema": ["teste", "teste2"]
+            }
         
         result = self.list.create_item(item_data=my_data)
         result['d']["Id"]
