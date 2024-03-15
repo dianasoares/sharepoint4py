@@ -12,13 +12,13 @@ with open('shareplum/version.py', 'r') as fd:
                         fd.read(), re.MULTILINE).group(1)
 
 setup(
-    name='SharePlum',
+    name='Sharepy',
     version=version,
     description='Python SharePoint Library',
     long_description=open('README.rst').read(),
-    url='https://github.com/jasonrollins/shareplum',
-    author='Jason Rollins',
-    author_email='jason.c.rollins@gmail.com',
+    url='https://github.com/dianasoares/sharepy',
+    author='Jason Rollins | Diana Soares',
+    author_email='soaresd32@hotmail.com',
     license='MIT',
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -35,6 +35,6 @@ setup(
         'Topic :: Office/Business',
     ],
     keywords=['SharePoint'],
-    packages=['shareplum'],
+    packages=['sharepy'],
     install_requires=['lxml', 'requests', 'requests-ntlm', 'requests-toolbelt'],
 )

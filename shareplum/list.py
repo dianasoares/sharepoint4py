@@ -1,3 +1,4 @@
+import os
 import re
 from datetime import datetime
 from typing import Any
@@ -7,7 +8,7 @@ from typing import List
 from typing import Optional
 from typing import Tuple
 
-from .request_helper import post
+from .request_helper import post, get
 import requests
 import json
 from lxml import etree
@@ -100,6 +101,19 @@ class _List2007:
             new_data.append(new_dict)
 
         return new_data
+    
+    def _convert_item_to_internal(self, item):
+        # type: (List[Dict]) -> None
+        """From 'Column Title' to 'Column_x0020_Title'"""
+
+        keys = list(item.keys())[:]
+        new_dict = dict()
+        for key in keys:
+            if key not in self._disp_cols:
+                raise Exception(key + " not a column in current List.")
+            new_dict[self._disp_cols[key]["name"]] = self._sp_type(key, item[key])
+
+        return new_dict
 
     def _convert_to_display(self, data):
         # type: (List[Dict]) -> None
@@ -411,7 +425,7 @@ class _List2007:
             view[row["DisplayName"]] = row
         return view
 
-    def get_version_collection(self, list_id, item_id, field_name):  # type: () -> List[Dict[str, str]]
+    def get_version_collection(self, list_id, item_id, field_name) -> List[Dict[str, str]]:
 
         # Build Request
         soap_request = Soap("GetVersionCollection")
@@ -466,6 +480,7 @@ class _List2007:
         """
         if type(data) != list:
             raise Exception("data must be a list of dictionaries")
+        
         # Build Request
         soap_request = Soap("UpdateListItems")
         soap_request.add_parameter("listName", self.list_name)
@@ -600,3 +615,50 @@ class _List365(_List2007):
 
         response = post(self._session, url=url, headers=headers, data=body, timeout=self.timeout)
         return response.json()
+
+    @property
+    def list_item_entity_fullname(self):
+
+        response = get(self._session, self.site_url + f"/_api/lists/getbytitle('{self.list_name}')?$select=ListItemEntityTypeFullName")
+        data = json.loads(response.text)['ListItemEntityTypeFullName']
+        return data
+        
+        
+    def create_item(self, item_data):
+        
+        url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items"
+
+        update_data = {}
+        update_data['__metadata'] = {'type': self.list_item_entity_fullname}
+    
+        spdata = self._convert_item_to_internal(item_data)
+                
+        update_data.update(spdata)
+        body = json.dumps(update_data)
+
+        headers = {'Accept': 'application/json;odata=verbose',
+                   'Content-Type': 'application/json;odata=verbose',
+                   'X-RequestDigest': self.contextinfo['FormDigestValue']}
+
+        response = post(self._session, url=url, headers=headers, data=body, timeout=self.timeout)
+        return response.json()['d']
+
+    def get_attachments(self, item_id: str):
+        
+        url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})/AttachmentFiles"
+        headers = {'X-RequestDigest': self.contextinfo['FormDigestValue']}
+
+
+        return get(self._session, url=url, headers=headers, timeout=self.timeout).json()['value']
+
+    def upload_file(self, item_id: str, filepath: str):
+        
+        file_name = os.path.basename(filepath)
+    
+        url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})/AttachmentFiles/add(Filename='{file_name}')"
+        headers = {'X-RequestDigest': self.contextinfo['FormDigestValue']}
+
+        with open(filepath, mode="rb") as f:
+            post(self._session, url=url, headers=headers, data=f, timeout=self.timeout)
+
+        return self.get_attachments(item_id)
