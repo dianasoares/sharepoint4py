@@ -1,8 +1,8 @@
 ==============================
-Sharepoint4py: Python + SharePoint
+sharepoint4py: Python + SharePoint
 ==============================
 
-Sharepoint4py is an easier way to work with SharePoint services.  It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
+sharepoint4py is an easier way to work with SharePoint services.  It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
 
 Example::
     

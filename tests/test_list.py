@@ -1,23 +1,12 @@
 from sharepoint4py import Site
 from sharepoint4py import Office365
 from sharepoint4py.site import Version
-# from .test_settings import TEST_SETTINGS, TEST_PASSWORD
+
+
+from tests.local_test_settings import TEST_SETTINGS, TEST_PASSWORD
 import unittest
 
-
 import os
-
-TEST_SETTINGS = {
-        "server_url": "",
-        "version": "2019",
-        "site_url": "",
-        "username": "",
-        "test_list": "Teste",
-        "test_folder": "",
-        "test_folder_apostrophe": ""
-    }
-
-TEST_PASSWORD = os.environ.get('TEST_PASSWORD')
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
@@ -52,7 +41,8 @@ class ListTestCase(unittest.TestCase):
         self.list = self.site.List(TEST_SETTINGS["test_list"])
         self.assertIsNotNone(self.list.fields)
 
-    def test_c_update_list(self):
+
+    def test_c_create_item(self):
         
         print("Update List")
 
@@ -68,6 +58,15 @@ class ListTestCase(unittest.TestCase):
         size_after = len(self.list.get_list_items())
         
         self.assertEqual(size_after - size_before, 1)
+
+    def test_c_create_list(self):
+        
+        print("Create List")
+        list = self.site.create_list(title="Test List", description="Test list creation")
+        self.assertIsNone(list)
+
+
+
 
     def test_c_delete_attachment(self):
         

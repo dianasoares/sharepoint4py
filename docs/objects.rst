@@ -4,7 +4,7 @@ Classes and Methods
 
 Site
 ====
-The main object of the Sharepoint4py library is Site.
+The main object of the sharepoint4py library is Site.
 
 .. py:class:: Site(url [version=Version.v2007, auth=None, authcookie=None, verify_ssl=True, ssl_version='TLSv1', huge_tree=False, timeout=None])
 

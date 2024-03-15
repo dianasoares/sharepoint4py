@@ -7,15 +7,16 @@ except ImportError:
 
 from codecs import open
 
-with open('Sharepoint4py/version.py', 'r') as fd:
+with open('sharepoint4py/version.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
                         fd.read(), re.MULTILINE).group(1)
 
 setup(
-    name='Sharepoint4py',
+    name='sharepoint4py',
     version=version,
     description='Python SharePoint Library',
     long_description=open('README.rst').read(),
+    long_description_content_type='text/markdown',
     url='https://github.com/dianasoares/sharepoint4py',
     author='Diana Soares',
     author_email='soaresd32@hotmail.com',

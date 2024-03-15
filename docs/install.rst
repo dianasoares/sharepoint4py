@@ -4,18 +4,18 @@ Installing
 
 Installation is as easy as::
 
-    $ pip install Sharepoint4py
+    $ pip install sharepoint4py
 
 or install from source. ::
 
-    $ git clone git://github.com/jasonrollins/Sharepoint4py
-    $ cd Sharepoint4py
+    $ git clone git://github.com/jasonrollins/sharepoint4py
+    $ cd sharepoint4py
     $ python setup.py install
 
 Dependencies
 ============
 
-Sharepoint4py requires the following packages:
+sharepoint4py requires the following packages:
 
 * `lxml <https://pypi.python.org/pypi/lxml>`_
 * `requests <https://pypi.python.org/pypi/requests>`_

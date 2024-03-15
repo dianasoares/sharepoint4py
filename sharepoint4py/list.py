@@ -623,8 +623,16 @@ class _List365(_List2007):
         data = json.loads(response.text)['ListItemEntityTypeFullName']
         return data
         
-    def create_item(self, item_data):
-        
+    def create_item(self, item_data: str) -> dict:
+        """Add an item to a SharePoint list
+
+        Args:
+            item_data (dict): dict with the data of the item to be created
+
+        Returns:
+            list[dict]: returns a dict with data about the item created
+        """        
+
         url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items"
 
         update_data = {}
@@ -642,7 +650,14 @@ class _List365(_List2007):
         response = post(self._session, url=url, headers=headers, data=body, timeout=self.timeout)
         return response.json()['d']
 
-    def delete_item(self, item_id):
+    def delete_item(self, item_id) -> None:
+        """Delete an item from a SharePoint list
+
+        Args:
+            item_id (str | int): id of the list item
+
+        """        
+
         
         url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})"
 
@@ -650,11 +665,36 @@ class _List365(_List2007):
                    'Content-Type': 'application/json;odata=verbose',
                    'X-RequestDigest': self.contextinfo['FormDigestValue']}
 
-        response = delete(self._session, url=url, headers=headers, timeout=self.timeout)
-        return response.json()
-    
-    def get_attachments(self, item_id: str):
+        delete(self._session, url=url, headers=headers, timeout=self.timeout)
+
+    def get_item(self, item_id) -> dict:
+        """Get an item from a SharePoint list
+
+        Args:
+            item_id (str | int): id of the list item
+
+        Returns:
+            dict: dict with data about the item
+        """
         
+        url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})"
+
+        headers = {'Accept': 'application/json;odata=verbose',
+                   'Content-Type': 'application/json;odata=verbose',
+                   'X-RequestDigest': self.contextinfo['FormDigestValue']}
+
+        return get(self._session, url=url, headers=headers, timeout=self.timeout).json()
+
+    def get_attachments(self, item_id: str) -> list[dict]:
+        """Get all attachments from a SharePoint list item
+
+        Args:
+            item_id (str | int): id of the list item
+
+        Returns:
+            list[dict]: returns the attachments of the list
+        """        
+
         url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})/AttachmentFiles"
         headers = {'X-RequestDigest': self.contextinfo['FormDigestValue']}
 
@@ -662,7 +702,16 @@ class _List365(_List2007):
         return get(self._session, url=url, headers=headers, timeout=self.timeout).json()['value']
 
     def upload_attachment(self, item_id: str, filepath: str):
-        
+        """Upload an attachment to a SharePoint list item
+
+        Args:
+            item_id (str | int): id of the list item
+            filepath (str): path of the file
+
+        Returns:
+            list[dict]: returns the attachments of the list
+        """       
+
         file_name = os.path.basename(filepath)
         
         try: self.delete_attachment(item_id,  file_name)
@@ -676,10 +725,18 @@ class _List365(_List2007):
 
         return self.get_attachments(item_id)
     
-    def delete_attachment(self, item_id,  file_name: str):
-            
+    def delete_attachment(self, item_id,  file_name: str) -> None:
+        """Delete a SharePoint list attachment
+
+        Args:
+            item_id (str | int): id of the list item
+            file_name (str): name of the attachment
+
+        Returns:
+            bool: returns True if attachment was deleted and False if it was not possible to delete it
+        """
+
         url = self.site_url + f"/_api/lists/getbytitle('{self.list_name}')/items({item_id})/AttachmentFiles('{file_name}')"
         headers = {'X-RequestDigest': self.contextinfo['FormDigestValue']}
-
-        response = delete(self._session, url=url, headers=headers, timeout=self.timeout)
-        return response
+        delete(self._session, url=url, headers=headers, timeout=self.timeout)
+ 

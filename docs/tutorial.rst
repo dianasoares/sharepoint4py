@@ -25,7 +25,7 @@ For Office 365 Sharepoint is just as easy. The Office365 class grabs a login tok
 
 Access REST API
 ================
-You can access aditional features by utilizing the SharePoint REST API in Sharepoint4py.  To access this API you must specify a SharePoint version higher than 2013 when creating your Site object.
+You can access aditional features by utilizing the SharePoint REST API in sharepoint4py.  To access this API you must specify a SharePoint version higher than 2013 when creating your Site object.
 
 
 ::
@@ -95,7 +95,7 @@ or specifying the fields you want. ::
     sp_data = new_list.GetListItems(fields=['ID', 'Title'])
 
 
-Sharepoint4py will automatically convert the name of the column that is displayed when you view your list in a web browser to the internal SharePoint name so you don't have to worry about how SharePoint stores the data.
+sharepoint4py will automatically convert the name of the column that is displayed when you view your list in a web browser to the internal SharePoint name so you don't have to worry about how SharePoint stores the data.
 
 Update List Data
 ================

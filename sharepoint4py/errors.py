@@ -1,4 +1,4 @@
-class Sharepoint4pyError(Exception):
+class sharepoint4pyError(Exception):
     def __init__(self, msg, details=None):
         if details:
             super().__init__(f"{msg} : {details}")
@@ -6,5 +6,5 @@ class Sharepoint4pyError(Exception):
             super().__init__(msg)
 
 
-class Sharepoint4pyRequestError(Sharepoint4pyError):
+class sharepoint4pyRequestError(sharepoint4pyError):
     pass

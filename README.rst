@@ -1,12 +1,13 @@
-PROJECT STATUS
-===================
-
-I have not had access to a SharePoint server for a while now and I do not feel that I can support this library in any reasonable fashion.  I will still accept pull requests and respond to issues as much as I can, but please be aware that I am no longer capapable of testing most of these changes.
-
-Sharepoint4py
+sharepoint4py
 ==========
 
-Sharepoint4py is an easier way to work with SharePoint services. It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
+This is a continuation of deprecated project SharePlum from Jason Rollins
+
+(THE DOCUMENTATION BELOW IS MOST FROM THE LEGACY LIBRARY AND WILL SOON BE UPDATED)
+
+
+sharepoint4py is an easier way to work with SharePoint services. 
+It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
 
 
 
@@ -70,13 +71,13 @@ Features
 Documentation
 -------------
 
-`Read the Docs <http://Sharepoint4py.readthedocs.org/en/latest/>`_
+`Read the Docs <http://sharepoint4py.readthedocs.org/en/latest/>`_
 
 Contribute
 ----------
 
-- `Issue Tracker <http://github.com/jasonrollins/Sharepoint4py/issues>`_
-- `Source Code <http://github.com/jasonrollins/Sharepoint4py>`_
+- `Issue Tracker <https://github.com/dianasoares/sharepy/issues>`_
+- `Source Code <https://github.com/dianasoares/sharepy>`_
 
 Unit Tests
 ^^^^^^^^^^
