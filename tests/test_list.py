@@ -1,8 +1,16 @@
-from shareplum import Site
-from shareplum import Office365
-from shareplum.site import Version
-from .test_settings import TEST_SETTINGS, TEST_PASSWORD
+from datetime import datetime
+from sharepoint4py import Site
+from sharepoint4py import Office365
+from sharepoint4py.site import Version
+
+
+from tests.local_test_settings import TEST_SETTINGS, TEST_PASSWORD
 import unittest
+
+import os
+
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
 
 # Edit test_server.json file to setup SharePoint Test Server
 # Use OS Enviroment Variable TEST_PASSWORD for SharePoint password
@@ -34,14 +42,66 @@ class ListTestCase(unittest.TestCase):
         self.list = self.site.List(TEST_SETTINGS["test_list"])
         self.assertIsNotNone(self.list.fields)
 
-    def test_c_update_list(self):
+
+    def test_c_create_item(self):
+        
         print("Update List")
+
         self.list = self.site.List(TEST_SETTINGS["test_list"])
-        my_data = [{'Title': 'First Row!'},
-                   {'Title': 'Another One!'},
-                   {'Title': 'Thrid Row'}]
-        self.list.UpdateListItems(data=my_data, kind='New')
-        self.assertEqual(len(self.list.get_list_items(row_limit=5)), 3)
+
+        size_before = len(self.list.get_list_items())
+        
+        my_data = {
+            'Nome': 'First Row!',
+            'Descrição': "teste descrição",
+            "Edital": "Petrobras",
+            "Prazo de envio de proposta": datetime.now(),
+            "Link Edital": "https://powerusers.microsoft.com/t5/Building-Flows/Copy-a-list-item-using-REST-API-choice-field-with-multiple/td-p/1266036",
+            "Tema": ["teste", "teste2"]
+            }
+        
+        result = self.list.create_item(item_data=my_data)
+        result['d']["Id"]
+        
+        size_after = len(self.list.get_list_items())
+        
+        self.assertEqual(size_after - size_before, 1)
+
+    def test_c_create_list(self):
+        
+        print("Create List")
+        list = self.site.create_list(title="Test List", description="Test list creation")
+        self.assertIsNone(list)
+
+
+
+
+    def test_c_delete_attachment(self):
+        
+        print("Delete Attachment")
+
+        self.list = self.site.List(TEST_SETTINGS["test_list"])
+               
+        before_attachments = self.list.get_attachments(item_id=7)
+        
+        for attach in before_attachments:
+            self.list.delete_attachment(item_id=7, file_name=attach["FileName"])
+            
+        after_attachments = self.list.get_attachments(item_id=7)
+       
+        self.assertEqual(len(after_attachments), 0)
+        
+    def test_c_upload_attachment(self):
+        
+        print("Upload Attachment")
+
+        self.list = self.site.List(TEST_SETTINGS["test_list"])
+        file = os.path.join(__location__, "data", "test.txt")
+        after_attachments = self.list.upload_attachment(item_id=6, filepath=file)
+        
+        self.assertEqual( len(after_attachments), 1)
+
+
 
     def test_d_delete_row(self):
         print("Delete Row")

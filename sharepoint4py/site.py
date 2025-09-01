@@ -1,3 +1,4 @@
+import json
 from typing import Any
 from typing import Dict
 from typing import List
@@ -59,7 +60,7 @@ class _Site2007:
         self._session.mount("https://", https_adaptor)
         self._session.mount("http://", http_adaptor)
 
-        self._session.headers.update({"user-agent": "shareplum/%s" % __version__})
+        self._session.headers.update({"user-agent": "sharepoint4py/%s" % __version__})
 
         if authcookie is not None:
             self._session.cookies = authcookie
@@ -506,7 +507,55 @@ class _Site365(_Site2007):
     # Legacy API
     List = list
 
+    def create_list(self, title, description, template_id='Custom List'):
+        """Create a sharepoint list
 
+        Args:
+            title (str): title of the list
+            description (str): description of the list
+            template_id (str, optional): name or id of the list to use as template. Defaults to 'Custom List'.
+
+        Returns:
+            dict: returns a dict with the data of the list created
+        """
+        
+        template_ids = {
+            "Announcements": "104",
+            "Contacts": "105",
+            "Custom List": "100",
+            "Custom List in Datasheet View": "120",
+            "DataSources": "110",
+            "Discussion Board": "108",
+            "Document Library": "101",
+            "Events": "106",
+            "Form Library": "115",
+            "Issues": "1100",
+            "Links": "103",
+            "Picture Library": "109",
+            "Survey": "102",
+            "Tasks": "107"
+        }
+                
+        update_data = {}
+        update_data['__metadata'] = {'type': 'SP.List'}
+        update_data["AllowContentTypes"] = True
+        update_data["BaseTemplate"] =  template_ids[template_id] if isinstance(template_id, str) else template_id
+        update_data["ContentTypesEnabled"] = True
+        update_data["Description"] = description
+        update_data["Title"] = title
+        
+        body = json.dumps(update_data)
+
+        url = self.site_url + f"/_api/web/lists"
+
+        headers = {'Accept': 'application/json;odata=verbose',
+                   'Content-Type': 'application/json;odata=verbose',
+                   'X-RequestDigest': self.contextinfo['FormDigestValue']}
+
+        response = post(self._session, url=url, headers=headers, data=body, timeout=self.timeout)
+
+        return response.json()['d']
+    
 def Site(site_url,  # type: str
          version=Version.v2007,
          auth=None,  # type: Optional[Any]

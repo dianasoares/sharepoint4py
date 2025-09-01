@@ -4,7 +4,7 @@ Classes and Methods
 
 Site
 ====
-The main object of the SharePlum library is Site.
+The main object of the sharepoint4py library is Site.
 
 .. py:class:: Site(url [version=Version.v2007, auth=None, authcookie=None, verify_ssl=True, ssl_version='TLSv1', huge_tree=False, timeout=None])
 
@@ -49,7 +49,7 @@ Methods
 
     Returns a List object for the list with 'listName' on the current Site.
 
-    Sometimes internal fields can take the same DisplayName as visible fields, effectively hiding them from SharePlum. When 'exclude_hidden_fields' is True, these internal fields won't be loaded.
+    Sometimes internal fields can take the same DisplayName as visible fields, effectively hiding them from sharepoint4py. When 'exclude_hidden_fields' is True, these internal fields won't be loaded.
 
 List
 ====

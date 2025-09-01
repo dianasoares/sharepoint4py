@@ -2,7 +2,7 @@
 Queries
 ==========
 
-With SharePlum you can retrieve list items by providing a View Name or by providing a list of Column Names (fields) and a query.  You don't have to provide a query.  Given a list of Column Names, SharePlum will return all of the data for those columns.  When you need to filter down this information, you can provide a query.  A query has three major elements: Where, OrderBy, and GroupBy.
+With sharepoint4py you can retrieve list items by providing a View Name or by providing a list of Column Names (fields) and a query.  You don't have to provide a query.  Given a list of Column Names, sharepoint4py will return all of the data for those columns.  When you need to filter down this information, you can provide a query.  A query has three major elements: Where, OrderBy, and GroupBy.
 
 
 Where

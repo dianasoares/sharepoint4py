@@ -1,12 +1,13 @@
-PROJECT STATUS
-===================
-
-I have not had access to a SharePoint server for a while now and I do not feel that I can support this library in any reasonable fashion.  I will still accept pull requests and respond to issues as much as I can, but please be aware that I am no longer capapable of testing most of these changes.
-
-SharePlum
+sharepoint4py
 ==========
 
-SharePlum is an easier way to work with SharePoint services. It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
+This is a continuation of deprecated project SharePlum from Jason Rollins
+
+(THE DOCUMENTATION BELOW IS MOST FROM THE LEGACY LIBRARY AND WILL SOON BE UPDATED)
+
+
+sharepoint4py is an easier way to work with SharePoint services. 
+It handles all of the messy parts of dealing with SharePoint and allows you to write clean and Pythonic code.
 
 
 
@@ -15,7 +16,7 @@ Usage
 
 ::
 
-    from shareplum import Site
+    from sharepoint4py import Site
     from requests_ntlm import HttpNtlmAuth
 
     auth = HttpNtlmAuth('DIR\\username', 'password')
@@ -28,8 +29,8 @@ Authenticate to Office365 Sharepoint
 
 ::
 
-    from shareplum import Site
-    from shareplum import Office365
+    from sharepoint4py import Site
+    from sharepoint4py import Office365
 
     authcookie = Office365('https://abc.sharepoint.com', username='username@abc.com', password='password').GetCookies()
     site = Site('https://abc.sharepoint.com/sites/MySharePointSite/', authcookie=authcookie)
@@ -42,9 +43,9 @@ Access REST API
 
 ::
 
-    from shareplum import Site
-    from shareplum import Office365
-    from shareplum.site import Version
+    from sharepoint4py import Site
+    from sharepoint4py import Office365
+    from sharepoint4py.site import Version
 
     authcookie = Office365('https://abc.sharepoint.com', username='username@abc.com', password='password').GetCookies()
     site = Site('https://abc.sharepoint.com/sites/MySharePointSite/', version=Version.v2016, authcookie=authcookie)
@@ -70,13 +71,13 @@ Features
 Documentation
 -------------
 
-`Read the Docs <http://shareplum.readthedocs.org/en/latest/>`_
+`Read the Docs <http://sharepoint4py.readthedocs.org/en/latest/>`_
 
 Contribute
 ----------
 
-- `Issue Tracker <http://github.com/jasonrollins/shareplum/issues>`_
-- `Source Code <http://github.com/jasonrollins/shareplum>`_
+- `Issue Tracker <https://github.com/dianasoares/sharepy/issues>`_
+- `Source Code <https://github.com/dianasoares/sharepy>`_
 
 Unit Tests
 ^^^^^^^^^^

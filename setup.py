@@ -7,26 +7,30 @@ except ImportError:
 
 from codecs import open
 
-with open('shareplum/version.py', 'r') as fd:
+with open('sharepoint4py/version.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
                         fd.read(), re.MULTILINE).group(1)
 
 setup(
-    name='SharePlum',
+    name='sharepoint4py',
     version=version,
     description='Python SharePoint Library',
     long_description=open('README.rst').read(),
-    url='https://github.com/jasonrollins/shareplum',
-    author='Jason Rollins',
-    author_email='jason.c.rollins@gmail.com',
+    long_description_content_type='text/markdown',
+    url='https://github.com/dianasoares/sharepoint4py',
+    author='Diana Soares',
+    author_email='soaresd32@hotmail.com',
     license='MIT',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Intended Audience :: Developers',
         'Intended Audience :: Information Technology',
         'Intended Audience :: System Administrators',
@@ -35,6 +39,6 @@ setup(
         'Topic :: Office/Business',
     ],
     keywords=['SharePoint'],
-    packages=['shareplum'],
+    packages=['sharepoint4py'],
     install_requires=['lxml', 'requests', 'requests-ntlm', 'requests-toolbelt'],
 )

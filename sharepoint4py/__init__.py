@@ -1,4 +1,4 @@
-# SharePlum
+# sharepoint4py
 # This library simplfies the code necessary
 # to automate interactions with a SharePoint
 # server using python
@@ -8,5 +8,6 @@ from .version import __version__  # noqa: F401
 
 __all__ = ["site", "office365"]
 
-__title__ = "SharePlum SharePoint Library"
-__author__ = "Jason Rollins"
+__title__ = "sharepoint4py SharePoint Library"
+__author__ = "Diana Soares"
+__credits__ = 'Jason Rollins'

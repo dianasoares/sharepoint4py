@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# SharePlum documentation build configuration file, created by
+# sharepoint4py documentation build configuration file, created by
 # sphinx-quickstart on Fri Apr 22 20:52:07 2016.
 #
 # This file is execfile()d with the current directory set to its
@@ -46,9 +46,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'SharePlum'
-copyright = '2020, Jason Rollins'
-author = 'Jason Rollins'
+project = 'sharepoint4py'
+copyright = '2024, Diana Soares'
+author = 'Diana Soares'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -64,7 +64,7 @@ release = '0.4.1'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -121,7 +121,7 @@ html_theme = 'sphinx_rtd_theme'
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
-#html_title = 'SharePlum v0.1.0'
+#html_title = 'sharepoint4py v0.1.0'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -203,7 +203,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'SharePlumdoc'
+htmlhelp_basename = 'sharepoint4pydoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -225,8 +225,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'SharePlum.tex', 'SharePlum Documentation',
-     'Jason Rollins', 'manual'),
+    (master_doc, 'sharepoint4py.tex', 'sharepoint4py Documentation',
+     'Diana Soares', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -255,7 +255,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'shareplum', 'SharePlum Documentation',
+    (master_doc, 'sharepoint4py', 'sharepoint4py Documentation',
      [author], 1)
 ]
 
@@ -269,8 +269,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'SharePlum', 'SharePlum Documentation',
-     author, 'SharePlum', 'Python Library for interacting with SharePoint sites',
+    (master_doc, 'sharepoint4py', 'sharepoint4py Documentation',
+     author, 'sharepoint4py', 'Python Library for interacting with SharePoint sites',
      'Miscellaneous'),
 ]
 
